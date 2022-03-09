@@ -1,6 +1,6 @@
 [
     {
-        "Name": { "$regex": ".*Williams.*" }
+        "Name": { "$regex": ".*Williams( |-|$)" }
     },
     {
         "$text": { "$search": "\"Williams\"" }
