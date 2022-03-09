@@ -1,0 +1,8 @@
+[
+    {
+        "Name": { "$regex": ".*Williams.*" }
+    },
+    {
+        "$text": { "$search": "\"Williams\"" }
+    }
+]

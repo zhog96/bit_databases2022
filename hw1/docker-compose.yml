@@ -1,0 +1,27 @@
+services:
+  mongoDB:
+    image: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      net:
+        ipv4_address: 10.5.0.5
+  dataloader:
+    build: ./dataloader
+    command: python /scripts/dataloader.py
+    volumes:
+      - ./dataloader/titanic.csv:/data/titanic.csv
+      - ./dataloader/dataloader.py:/scripts/dataloader.py
+    depends_on:
+      - mongoDB
+    networks:
+      net:
+        ipv4_address: 10.5.0.6
+
+networks:
+  net:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 10.5.0.0/16
+         gateway: 10.5.0.1
