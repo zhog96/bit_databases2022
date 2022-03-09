@@ -1,0 +1,14 @@
+{
+    "filter": {
+        "Fare": {
+            "$gt": 25,
+            "$lt": 26
+        }, 
+        "Sex": "male"
+    },
+    "update": {
+        "$set": {
+            "Name": "SomeBody"
+        }
+    }
+}

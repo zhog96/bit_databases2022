@@ -1,0 +1,10 @@
+{
+    "filter": {
+        "$text": { "$search": "\"Williams\"" }
+    },
+    "update": {
+        "$set": {
+            "Age": 20
+        }
+    }
+}

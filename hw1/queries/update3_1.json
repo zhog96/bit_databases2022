@@ -1,0 +1,10 @@
+{
+    "filter": {
+        "Name": { "$regex": ".*Williams( |-|$)" }
+    },
+    "update": {
+        "$set": {
+            "Age": 20
+        }
+    }
+}
