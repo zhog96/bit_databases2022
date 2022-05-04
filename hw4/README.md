@@ -126,9 +126,27 @@ o.
 
 Open source, no companies
 
-p.
+p. 3 node cluster
 
-q.  
+![image info](./images/cluster.png)
+
+Loading data
+
+![image info](./images/before_reconfig.png)
+
+Table reconfiguration
+
+![image info](./images/reconfig.png)
+
+Age query without index
+
+![image info](./images/age_no_index.png)
+
+Age query with index
+
+![image info](./images/index.png)
+
+q. 
 
 ![image info](./images/explorer.png)
 
