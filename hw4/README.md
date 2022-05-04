@@ -110,3 +110,28 @@ l. RethinkDB uses a range sharding algorithm parameterized on the table’s prim
 
 Split points will not automatically be changed after table creation, which means that if the primary keys are unevenly distributed, shards may become unbalanced. However, the user can manually rebalance shards when necessary, as well as reconfigure tables with new sharding and replication settings. Users cannot set split points for shards manually.
 
+n. The default security group opens 4 ports:
+
+Port 22 is for SSH. The server uses public key authentication.
+
+Port 80 is for HTTP. It is used during the setup process but otherwise redirects to HTTPS.
+
+Port 443 is for HTTPS. An Nginx server sits between RethinkDB and the world and provides basic HTTP authentication and secure HTTPS connections for the web UI.
+
+Port 28015 is for client driver access. The only form of authentication is a key that is sent in plain text over the network.
+
+o. 
+
+![image info](./images/contributors.png)
+
+Open source, no companies
+
+p.
+
+q.
+
+r. https://rethinkdb.com
+
+![image info](./images/docs.png)
+
+s. 
