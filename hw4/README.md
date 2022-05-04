@@ -18,11 +18,18 @@ c. Implementing efficient realtime push architecture required redesigning most d
 
 d. 
 Simple queries
+
 ![image info](./images/script1.png)
 ![image info](./images/script2.png)
 ![image info](./images/script3.png)
 
+Nested field
+
+![image info](./images/script7.png)
+![image info](./images/script8.png)
+
 Join
+
 ![image info](./images/script4.png)
 ![image info](./images/script5.png)
 ![image info](./images/script6.png)
@@ -30,6 +37,7 @@ Join
 e.
 
 f. C++
+
 ![image info](./images/languages.png)
 
 g. 
