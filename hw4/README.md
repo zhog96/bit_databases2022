@@ -80,4 +80,17 @@ With simple and compound indexes, a document will be indexed using at most one i
 
 The keys in a multi index can be single values, compound values or even arbitrary expressions. (See the section below for more detail on indexes using functions.) What matters is that the “multi-value” that gets indexed is an array: the document will be referenced in the index multiple times, one for each element of this array.
 
-h. 
+h.i. When a node in the cluster receives a query from the client, it evaluates the query in the following way.
+
+First, the query is transformed into an execution plan that consists of a stack of internal logical operations. The operation stack fully describes the query in a data structure useful for efficient execution. The bottom-most node of the stack usually deals with data access— it can be a lookup of a single document, a short range scan bounded by an index, or even a full table scan. Nodes closer to the top usually perform transformations on the data – mapping the values, running reductions, grouping, etc. Nodes can be as simple as projections (i.e. returning a subset of the document), or as complex as entire stacks of stacks in case of subqueries.
+
+Each node in the stack has a number of methods defined on it. The three most important methods define how to execute a subset of the query on each server in the cluster, how to combine the data from multiple servers into a unified resultset, and how to stream data to the nodes further up in small chunks.
+
+As the client attempts to stream data from the server, these stacks are transported to every relevant server in the cluster, and each server begins evaluating the topmost node in the stack, in parallel with other servers. On each server, the topmost node in the stack grabs the first chunk of the data from the node below it, and applies its share of transformations to it. This process proceeds recursively until enough data is collected to send the first chunk to the client. The data from each server is combined into a single resultset, and forwarded to the client. This process continues as the client requests more data from the server.
+
+The two most important aspects of the execution engine is that every query is completely parallelized across the cluster, and that queries are evaluated lazily. For instance, if the client requests only one document, RethinkDB will try to do just enough work to return this document, and will not process every shard in its entirety. This allows for large, complicated queries to execute in a very efficient way.
+
+The full query execution process is fairly complex and nuanced. For example, some operations cannot be parallelized, some queries cannot be executed lazily (which has implications on runtime and RAM usage), and implementations of some operations could be significantly improved. We will be adding tools to help visualize and understand query execution in a user-friendly way, but at the moment the best way to learn more about it is to ask us or to look at the code.
+
+![image info](./images/plan.png)
+
