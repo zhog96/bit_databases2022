@@ -17,6 +17,15 @@ Drivers
 c. Implementing efficient realtime push architecture required redesigning most database components, including the query execution engine, the distributed system, the caching subsystem, and the storage engine. Because the architecture affects every database component, RethinkDB has been implemented in C++ from scratch. RethinkDB was built over five years by a team of database experts with the help of hundreds of contributors from around the world.
 
 d. 
+Simple queries
+![image info](./images/script1.png)
+![image info](./images/script2.png)
+![image info](./images/script3.png)
+
+Join
+![image info](./images/script4.png)
+![image info](./images/script5.png)
+![image info](./images/script6.png)
 
 f. C++
 
