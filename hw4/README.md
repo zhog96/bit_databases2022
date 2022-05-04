@@ -32,4 +32,30 @@ e.
 f. C++
 ![image info](./images/languages.png)
 
+g. 
+Simple indexes
+
+Use simple indexes to efficiently retrieve and order documents by the value of a single field.
+
+![image info](./images/index1.png)
+![image info](./images/index2.png)
+
+Compound indexes
+
+Compound indexes use arrays to efficiently retrieve documents by multiple fields.
+
+![image info](./images/index3.png)
+![image info](./images/index4.png)
+
+Internally, compound indexes and simple indexes are the same type of index in RethinkDB; compound indexes are simply a special case of regular index that returns an array rather than a single value. Note that this affects sorting: compound index values are sorted lexicographically, with the first (leftmost) elements of the compound value being more significant than the last (rightmost) ones. Therefore, using the full_name index, the above example “all users whose last name is Smith” only works for the last_name field. Searching by first_name with a query like between([r.minval, "John"], [r.maxval, "John"], {index: "full_name"}) would effectively select every user in the table, except (theoretically) users that have r.minval as last name and a first name lexicographically smaller than “John” (or the reverse for r.maxval).
+
+![image info](./images/index5.png)
+![image info](./images/index6.png)
+
+Multi indexes
+
+With simple and compound indexes, a document will be indexed using at most one index key: a single value for a simple index and a set of values for a compound index. Multiple documents may have the same index key. With a multi index, a document can be indexed using more than one key in the same index. For instance, a blog post might have multiple tags, and each tag might refer to multiple blog posts.
+
+The keys in a multi index can be single values, compound values or even arbitrary expressions. (See the section below for more detail on indexes using functions.) What matters is that the “multi-value” that gets indexed is an array: the document will be referenced in the index multiple times, one for each element of this array.
+
 
