@@ -128,10 +128,10 @@ Open source, no companies
 
 p.
 
-q.
+q.  
+
+![image info](./images/explorer.png)
 
 r. https://rethinkdb.com
 
 ![image info](./images/docs.png)
-
-s. 
