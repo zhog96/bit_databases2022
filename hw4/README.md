@@ -144,7 +144,7 @@ Age query without index
 
 Age query with index
 
-![image info](./images/index.png)
+![image info](./images/age_index.png)
 
 q. 
 
