@@ -94,3 +94,19 @@ The full query execution process is fairly complex and nuanced. For example, som
 
 ![image info](./images/plan.png)
 
+j. Most write operations involving a single document in RethinkDB are guaranteed to be atomic. Operations that are not deterministic cannot update documents in an atomic fashion (such as random values, or values obtained as the result of a subquery). In addition, multiple documents are not updated atomically.
+
+k. Backup
+
+Use the dump subcommand to create an archive of data from the cluster. This creates a tar.gz file consisting of JSON documents and additional table metadata.
+
+Since the backup process uses client drivers, it takes advantage of RethinkDB’s concurrency. While it will use some cluster resources, it won’t lock out any clients, and it can be safely run on a live cluster.
+
+Restore
+
+The restore subcommand has most of the the same options and defaults as the dump command, although there are a few extra commands for controlling how data is imported.
+
+l. RethinkDB uses a range sharding algorithm parameterized on the table’s primary key to partition the data. When the user states they want a given table to use a certain number of shards, the system examines the statistics for the table and finds the optimal set of split points to break up the table evenly. All sharding is currently done based on the table’s primary key, and cannot be done based on any other attribute (in RethinkDB the primary key and the shard key are effectively the same thing).
+
+Split points will not automatically be changed after table creation, which means that if the primary keys are unevenly distributed, shards may become unbalanced. However, the user can manually rebalance shards when necessary, as well as reconfigure tables with new sharding and replication settings. Users cannot set split points for shards manually.
+
