@@ -27,5 +27,8 @@ Join
 ![image info](./images/script5.png)
 ![image info](./images/script6.png)
 
+e. ![image info](./images/languages.png)
+
 f. C++
+
 
