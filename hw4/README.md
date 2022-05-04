@@ -35,6 +35,19 @@ Join
 ![image info](./images/script6.png)
 
 e.
+How is data stored on disk?
+
+The data is organized into B-Trees, and stored on disk using a log-structured storage engine built specifically for RethinkDB and inspired by the architecture of BTRFS. The storage engine has a number of benefits over other available options, including an incremental, fully concurrent garbage compactor, low CPU overhead and very efficient multicore operation, a number of SSD optimizations, instantaneous recovery after power failure, full data consistency in case of failures, and support for multiversion concurrency control.
+
+The storage engine is used in conjunction with a custom, B-Tree-aware caching engine which allows file sizes many orders of magnitude greater than the amount of available memory. RethinkDB can operate on a terabyte of data with about ten gigabytes of free RAM.
+
+How does RethinkDB handle data corruption?
+
+It relies on the underlying storage system to ensure data consistency. RethinkDB does not perform additional checksums on stored data. It is, however, compatible with file systems which do guarantee data integrity, such as ZFS.
+
+Which file systems are supported?
+
+RethinkDB supports most commonly used file systems. It optionally supports direct disk I/O for greater efficiency, but this is not enabled by default.
 
 f. C++
 
@@ -67,4 +80,4 @@ With simple and compound indexes, a document will be indexed using at most one i
 
 The keys in a multi index can be single values, compound values or even arbitrary expressions. (See the section below for more detail on indexes using functions.) What matters is that the “multi-value” that gets indexed is an array: the document will be referenced in the index multiple times, one for each element of this array.
 
-
+h. 
