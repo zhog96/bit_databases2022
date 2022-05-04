@@ -1,3 +1,11 @@
+aa. Sensei is a distributed data system that was built to support many product initiatives at LinkedIn.com, e.g. LinkedIn Signal and the LinkedIn Homepage. It is foundation to the LinkedIn's search and data infrastructure.
+
+Sensei is both a search engine and a database. Sensei is designed to query and navigate through documents with parts that contain text and are unstructured, as well as parts containing meta information that have well-formed structures.
+
+![image info](./images/sensei.png)
+
+Project died in 2014
+
 a. RethinkDB is the first open-source, scalable JSON database built from the ground up for the realtime web. It inverts the traditional database architecture by exposing an exciting new access model – instead of polling for changes, the developer can tell RethinkDB to continuously push updated query results to applications in realtime. RethinkDB’s realtime push architecture dramatically reduces the time and effort necessary to build scalable realtime apps.
 
 For example, when a user changes the position of a button in a collaborative design app, the server has to notify other users that are simultaneously working on the same project. Web browsers support these use cases via WebSockets and long-lived HTTP connections, but adapting database systems to realtime needs still presents a huge engineering challenge.
